@@ -8,7 +8,7 @@ import com.jedun.fretollochallenge.domain.model.ApiResponse
 import com.jedun.fretollochallenge.domain.model.SessionsItem
 import com.jedun.fretollochallenge.domain.usecase.SessionListUseCase
 import com.jedun.fretollochallenge.domain.util.Event
-import com.jedun.fretollochallenge.presentation.model.Session
+import com.jedun.fretollochallenge.presentation.mapper.SessionListMapper
 import com.jedun.fretollochallenge.presentation.model.ViewState
 import com.jedun.fretollochallenge.presentation.ui.home.states.ExerciseState
 import com.jedun.fretollochallenge.presentation.ui.home.states.SessionStateEvent
@@ -16,11 +16,12 @@ import com.jedun.fretollochallenge.presentation.ui.home.states.SessionViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
+import kotlin.math.max
 
 @HiltViewModel
 class SessionsViewModel @Inject constructor(
-    private val sessionUseCase: SessionListUseCase
+    private val sessionUseCase: SessionListUseCase,
+    private val sessionMapper: SessionListMapper
 ) : ViewModel() {
 
     private val _sessionStateObservable = MutableLiveData<SessionViewState>()
@@ -67,7 +68,7 @@ class SessionsViewModel @Inject constructor(
                     sessionStateTemp = SessionViewState(
                         isLoading = false,
                         sessions = sessionItems.response.map {
-                            Session(it.name, it.practicedOnDate)
+                            sessionMapper.mapFromDto(it)
                         },
                         viewState = ViewState.SUCCESS
                     )
@@ -75,11 +76,38 @@ class SessionsViewModel @Inject constructor(
                     _exerciseState.value = sessionItems.response.map {
                         ExerciseState(it.name, it.exercises)
                     }
+
                     _sessionStateObservable.value = sessionStateTemp
 
                 }
             }
         }
+    }
+
+
+    fun calculateMaximumBpmIncrease(): Int {
+        var previousBpm: Float
+        var maximumIncrease = Int.MIN_VALUE
+
+        exerciseState.value?.let { states ->
+
+            previousBpm = getAverageSessionBpm(states[0])
+
+            for (index in 1 until states.size) {
+                states[index].exerciseList.forEach {
+                    maximumIncrease =
+                        max(maximumIncrease, ((it.practicedAtBpm * 100) / previousBpm).toInt())
+                }
+                previousBpm = getAverageSessionBpm(states[index])
+            }
+        }
+
+        return maximumIncrease
+    }
+
+    private fun getAverageSessionBpm(exerciseState: ExerciseState): Float {
+        return exerciseState.exerciseList.map { exercise -> exercise.practicedAtBpm }
+            .reduce { acc, index -> acc + index }.toFloat() / 4
     }
 
 
