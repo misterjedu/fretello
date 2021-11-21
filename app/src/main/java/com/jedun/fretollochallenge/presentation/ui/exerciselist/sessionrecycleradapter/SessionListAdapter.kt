@@ -1,14 +1,13 @@
-package com.jedun.fretollochallenge.presentation.ui.home.sessionrecycleradapter
+package com.jedun.fretollochallenge.presentation.ui.exerciselist.sessionrecycleradapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.jedun.fretollochallenge.common.Callback
 import com.jedun.fretollochallenge.databinding.ItemSessionBinding
-import com.jedun.fretollochallenge.presentation.model.Session
+import com.jedun.fretollochallenge.presentation.model.CompleteExercise
 
-class SessionListAdapter(private val clickListener: Callback<String>) :
-    ListAdapter<Session, SessionViewHolder>(SessionDiffUtil()) {
+class SessionListAdapter :
+    ListAdapter<CompleteExercise, SessionViewHolder>(SessionDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SessionViewHolder {
         val binding =
@@ -16,10 +15,18 @@ class SessionListAdapter(private val clickListener: Callback<String>) :
         return SessionViewHolder(binding)
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
     override fun onBindViewHolder(holder: SessionViewHolder, position: Int) {
         val currentItem = getItem(position)
         if (currentItem != null)
-            holder.bind(currentItem, clickListener)
+            holder.bind(currentItem)
     }
 }
 

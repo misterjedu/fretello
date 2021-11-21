@@ -7,32 +7,8 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.jedun.fretollochallenge.presentation.ui.home.SessionsFragment"
+        android:name="com.jedun.fretollochallenge.presentation.ui.exerciselist.SessionsFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_sessions">
-        <action
-            android:id="@+id/action_navigation_home_to_exerciseFragment"
-            app:destination="@id/exerciseFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_sessions"/>
 
-    <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.jedun.fretollochallenge.presentation.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.jedun.fretollochallenge.presentation.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
-    <fragment
-        android:id="@+id/exerciseFragment"
-        android:name="com.jedun.fretollochallenge.presentation.ui.home.ExerciseFragment"
-        android:label="fragment_exercise"
-        tools:layout="@layout/fragment_exercise">
-        <argument
-            android:name="exercise_name"
-            app:argType="string" />
-    </fragment>
 </navigation>

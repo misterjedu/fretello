@@ -1,4 +1,4 @@
-package com.jedun.fretollochallenge.presentation.ui.home.states
+package com.jedun.fretollochallenge.presentation.ui.exerciselist.states
 
 import com.jedun.fretollochallenge.domain.model.Exercise
 

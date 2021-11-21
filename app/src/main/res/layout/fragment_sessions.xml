@@ -11,7 +11,7 @@
 
         <variable
             name="viewmodel"
-            type="com.jedun.fretollochallenge.presentation.ui.home.SessionsViewModel" />
+            type="com.jedun.fretollochallenge.presentation.ui.exerciselist.SessionsViewModel" />
 
     </data>
 
