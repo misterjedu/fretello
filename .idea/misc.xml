@@ -5,17 +5,25 @@
       <map>
         <entry key="app/src/main/res/drawable-v24/curved_background.xml" value="0.3896833503575077" />
         <entry key="app/src/main/res/drawable-v24/error_image.xml" value="0.3896833503575077" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.29775280898876405" />
         <entry key="app/src/main/res/drawable/ic_arrow_back_24px.xml" value="0.39739583333333334" />
+        <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.29775280898876405" />
+        <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.29775280898876405" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.29775280898876405" />
+        <entry key="app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.29775280898876405" />
         <entry key="app/src/main/res/drawable/splash.xml" value="0.39739583333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.27783452502553624" />
+        <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.27783452502553624" />
         <entry key="app/src/main/res/layout/fragment_exercise.xml" value="0.3296875" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.18425925925925926" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.18425925925925926" />
         <entry key="app/src/main/res/layout/fragment_sessions.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/item_exercise.xml" value="0.3770833333333333" />
-        <entry key="app/src/main/res/layout/item_exercise_two.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/item_exercise.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/item_exercise_two.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_session.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_sessions.xml" value="0.3770833333333333" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.14427083333333332" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.29010416666666666" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.29010416666666666" />
       </map>

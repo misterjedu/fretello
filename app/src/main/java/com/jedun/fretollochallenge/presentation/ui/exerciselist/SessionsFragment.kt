@@ -1,4 +1,4 @@
-package com.jedun.fretollochallenge.presentation.ui.home
+package com.jedun.fretollochallenge.presentation.ui.exerciselist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,12 +9,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.jedun.fretollochallenge.databinding.FragmentSessionsBinding
-import com.jedun.fretollochallenge.presentation.ui.home.sessionrecycleradapter.SessionListAdapter
-import com.jedun.fretollochallenge.presentation.ui.home.states.SessionStateEvent
+import com.jedun.fretollochallenge.presentation.ui.exerciselist.sessionrecycleradapter.SessionListAdapter
+import com.jedun.fretollochallenge.presentation.ui.exerciselist.states.SessionStateEvent
 import com.jedun.fretollochallenge.presentation.util.showDialog
 import dagger.hilt.android.AndroidEntryPoint
 
-const val FRAGMENT_RUNNING = "sessions_fragment"
 
 @AndroidEntryPoint
 class SessionsFragment : Fragment() {
@@ -25,23 +24,7 @@ class SessionsFragment : Fragment() {
     private lateinit var sessionRecyclerAdapter: SessionListAdapter
     private lateinit var sessionsRecyclerView: RecyclerView
     private lateinit var toolbar: androidx.appcompat.widget.Toolbar
-    var fragmentIsAlreadyRunning = false
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        /*
-          Network calls should only be made when the fragment is newly launched.
-          In case it goes through configuration changes, it should not make the call.
-         */
-        if (savedInstanceState != null) {
-            fragmentIsAlreadyRunning = savedInstanceState.getBoolean(FRAGMENT_RUNNING)
-        } else {
-            if (!fragmentIsAlreadyRunning) {
-                sessionsViewModel.getSessions()
-            }
-        }
-    }
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -65,7 +48,6 @@ class SessionsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpEvents()
-
         subsScribeObservables()
     }
 
@@ -93,16 +75,12 @@ class SessionsFragment : Fragment() {
                     Snackbar.LENGTH_SHORT
                 ).show()
 
-
+            if (sessionsViewModel.exerciseState.value?.isNotEmpty() == true)
+                showDialog(sessionsViewModel.calculateMaximumBpmIncrease())
 
             binding.paymentMethodFragmentSwipeRefresh.isRefreshing = it.isLoading
             sessionRecyclerAdapter.submitList(it.sessions.reversed())
         })
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putBoolean(FRAGMENT_RUNNING, true)
     }
 
 

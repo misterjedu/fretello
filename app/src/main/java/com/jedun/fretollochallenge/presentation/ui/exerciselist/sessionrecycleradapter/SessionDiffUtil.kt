@@ -1,4 +1,4 @@
-package com.jedun.fretollochallenge.presentation.ui.home.sessionrecycleradapter
+package com.jedun.fretollochallenge.presentation.ui.exerciselist.sessionrecycleradapter
 
 import androidx.recyclerview.widget.DiffUtil
 import com.jedun.fretollochallenge.presentation.model.CompleteExercise

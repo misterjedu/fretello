@@ -8,7 +8,7 @@ fun Fragment.showDialog(value: Int) {
 
     MaterialAlertDialogBuilder(this.requireContext())
         .setTitle(resources.getString(R.string.output))
-        .setMessage("The calculated maximum increase is $value")
+        .setMessage("The calculated maximum increase is $value BPM")
         .setPositiveButton("Okay") { dialog, which ->
             dialog.dismiss()
         }

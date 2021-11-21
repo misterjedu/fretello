@@ -1,9 +1,9 @@
-package com.jedun.fretollochallenge.presentation.ui.home.sessionrecycleradapter
+package com.jedun.fretollochallenge.presentation.ui.exerciselist.sessionrecycleradapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.jedun.fretollochallenge.databinding.ItemExerciseTwoBinding
+import com.jedun.fretollochallenge.databinding.ItemSessionBinding
 import com.jedun.fretollochallenge.presentation.model.CompleteExercise
 
 class SessionListAdapter :
@@ -11,8 +11,16 @@ class SessionListAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SessionViewHolder {
         val binding =
-            ItemExerciseTwoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemSessionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return SessionViewHolder(binding)
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
     }
 
     override fun onBindViewHolder(holder: SessionViewHolder, position: Int) {

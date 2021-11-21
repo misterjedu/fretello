@@ -26,7 +26,6 @@ class SessionRepositoryImpl(
                 is HttpException -> {
                     val errorResponse = convertErrorBody(exception)
                     ApiResponse.Error(exception.message())
-
                 }
                 else -> ApiResponse.Error("Error Unknown")
 

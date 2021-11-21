@@ -1,14 +1,13 @@
-package com.jedun.fretollochallenge.presentation.ui.home.exerciserecycleradapter
+package com.jedun.fretollochallenge.presentation.ui.exerciselist.exerciserecycleradapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.jedun.fretollochallenge.common.Callback
 import com.jedun.fretollochallenge.databinding.ItemExerciseBinding
-import com.jedun.fretollochallenge.domain.model.Exercise
+import com.jedun.fretollochallenge.presentation.model.ImageExercise
 
-class ExerciseListAdapter:
-    ListAdapter<Exercise, ExerciseViewHolder>(ExerciseDiffUtil()) {
+class ExerciseListAdapter :
+    ListAdapter<ImageExercise, ExerciseViewHolder>(ExerciseDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseViewHolder {
         val binding =

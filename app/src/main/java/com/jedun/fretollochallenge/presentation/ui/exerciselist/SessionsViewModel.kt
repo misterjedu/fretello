@@ -1,4 +1,4 @@
-package com.jedun.fretollochallenge.presentation.ui.home
+package com.jedun.fretollochallenge.presentation.ui.exerciselist
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,9 +10,9 @@ import com.jedun.fretollochallenge.domain.usecase.SessionListUseCase
 import com.jedun.fretollochallenge.domain.util.Event
 import com.jedun.fretollochallenge.presentation.mapper.SessionListMapper
 import com.jedun.fretollochallenge.presentation.model.ViewState
-import com.jedun.fretollochallenge.presentation.ui.home.states.ExerciseState
-import com.jedun.fretollochallenge.presentation.ui.home.states.SessionStateEvent
-import com.jedun.fretollochallenge.presentation.ui.home.states.SessionViewState
+import com.jedun.fretollochallenge.presentation.ui.exerciselist.states.ExerciseState
+import com.jedun.fretollochallenge.presentation.ui.exerciselist.states.SessionStateEvent
+import com.jedun.fretollochallenge.presentation.ui.exerciselist.states.SessionViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -24,6 +24,10 @@ class SessionsViewModel @Inject constructor(
     private val sessionMapper: SessionListMapper
 ) : ViewModel() {
 
+
+    init{
+        getSessions()
+    }
     private val _sessionStateObservable = MutableLiveData<SessionViewState>()
     val sessionViewStateObservable: LiveData<SessionViewState> = _sessionStateObservable
 
@@ -78,7 +82,6 @@ class SessionsViewModel @Inject constructor(
                     }
 
                     _sessionStateObservable.value = sessionStateTemp
-
                 }
             }
         }
@@ -107,7 +110,7 @@ class SessionsViewModel @Inject constructor(
 
     private fun getAverageSessionBpm(exerciseState: ExerciseState): Float {
         return exerciseState.exerciseList.map { exercise -> exercise.practicedAtBpm }
-            .reduce { acc, index -> acc + index }.toFloat() / 4
+            .reduce { acc, index -> acc + index }.toFloat() / exerciseState.exerciseList.size
     }
 
 

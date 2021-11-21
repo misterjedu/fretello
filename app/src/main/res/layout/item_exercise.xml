@@ -7,7 +7,7 @@
 
         <variable
             name="exercise"
-            type="com.jedun.fretollochallenge.domain.model.Exercise" />
+            type="com.jedun.fretollochallenge.presentation.model.ImageExercise" />
 
     </data>
 
@@ -19,56 +19,25 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="150dp"
+            imageResource="@{exercise.imageUrl}"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/chord" />
 
         <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
+            android:id="@+id/textView"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/exercise_name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
-            android:text="@string/practiced_at"
+            android:layout_marginStart="8dp"
+            android:text="@{exercise.exerciseName}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="TextView" />
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:text="@{exercise.name}"
-            app:layout_constraintBottom_toBottomOf="@+id/textView2"
-            app:layout_constraintStart_toEndOf="@+id/textView2"
-            app:layout_constraintTop_toTopOf="@+id/textView2"
-            app:layout_constraintVertical_bias="0.0"
-            tools:text="Quarters flat minor C" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{String.valueOf(exercise.practicedAtBpm + ` BPM`)}"
-            app:layout_constraintBottom_toBottomOf="@+id/textView3"
-            app:layout_constraintStart_toStartOf="@+id/textView4"
-            app:layout_constraintTop_toTopOf="@+id/textView3"
-            tools:text="40" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
